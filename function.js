@@ -65,8 +65,9 @@ function headerblock(){
     /* ============ desktop view ============ */
     @media all and (min-width: 992px) {
         .navbar .has-megamenu { position: static !important; }
-        .navbar .megamenu { left: 0; right: 0; width: 100%; margin-top: 0;}
-    }	
+        .navbar .megamenu { left: 0; right: 0; width: 100%; margin-top: 0; display: flex; flex-wrap: nowrap; }
+        .navbar .megamenu .col-megamenu { flex: 1; }
+    }   
     /* ============ desktop view .end// ============ */
 
     /* ============ mobile view ============ */
@@ -74,42 +75,52 @@ function headerblock(){
         .navbar.fixed-top .navbar-collapse, 
         .navbar.sticky-top .navbar-collapse {
             overflow-y: auto; /* Enable vertical scrolling */
-            max-height: 80vh; /* Limit maximum height to 80% of viewport height */
+            max-height: 60vh; /* Limit maximum height to 60% of viewport height */
             margin-top: 5px; /* Optional: Adjust margin top as needed */
         }
 
         .dropdown-menu.megamenu {
             overflow-y: auto; /* Enable vertical scrolling for dropdown menu */
             max-height: 60vh; /* Limit maximum height of dropdown menu */
+            display: none; /* Hide dropdown menu by default */
+            flex-direction: column; /* Stack columns vertically */
             padding: 1rem; /* Optional: Adjust padding for better spacing */
         }
 
-        .col-megamenu {
-            padding-bottom: 1rem; /* Add bottom padding to submenu items */
+        .dropdown-menu.megamenu.show {
+            display: block; /* Show dropdown menu when active */
         }
-    }
+
+        .dropdown-menu.megamenu .row {
+            flex-direction: column; /* Stack columns vertically */
+        }
+
+        .col-megamenu {
+            width: 100%; /* Make each column take full width */
+            margin-bottom: 1rem; /* Add some space between columns */
+        }
+    }   
     /* ============ mobile view .end// ============ */
 </style>
-
-
 <script type="text/javascript">
-	document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("DOMContentLoaded", function(){
         /////// Prevent closing from click inside dropdown
         document.querySelectorAll('.dropdown-menu').forEach(function(element){
-        	element.addEventListener('click', function (e) {
-        		e.stopPropagation();
-        	});
-        })
-    }); 
-	// DOMContentLoaded  end
+            element.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        });
+    });
+    // DOMContentLoaded end
 </script>
+
+
 <li class="nav-item dropdown has-megamenu">
-				<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Services  </a>
-				<div class="dropdown-menu megamenu" role="menu">
-					<div class="row" style="font-size:13px;">
-                        <div class="col-lg-3 col-6">
-							<div class="col-megamenu">
-								<h6 class="title">Web Developement</h6>
+    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Services </a>
+    <div class="dropdown-menu megamenu" role="menu">
+        <div class="row" style="font-size:13px;">
+            <div class="col-lg-3 col-12 col-megamenu">
+								<a class="title" href="webdevelopment.php" style="color:#011a42;font-size:14px;font-weight:bold;">Web Developement</a>
 								<ul class="list-unstyled">
 									<li><a href="front-end-development-in-kovilpatti.php" style="text-decoration: none;">Front End Development</a></li>
 									<li><a href="back-end-development-in-kovilpatti.php" style="text-decoration: none;">Back End Development</a></li>
@@ -123,20 +134,17 @@ function headerblock(){
                                 <li><a href="maintenance-and-support.php" style="text-decoration: none;">Maintenance and Support</a></li>
                                 </ul>
 							</div>  <!-- col-megamenu.// -->
-						</div><!-- end col-3 -->
-						<div class="col-lg-3 col-6">
-							<div class="col-megamenu">
-								<h6 class="title">Software Development</h6>
+						<div class="col-lg-3 col-12 col-megamenu">
+								<a href="softwaredevelopment.php" class="title" style="color:#011a42;font-size:14px;font-weight:bold;">Software Development</a>
 								<ul class="list-unstyled">
 									<li><a href="cloud-solution.php">Cloud Solution</a></li>
 									<li><a href="custom-software-development.php">Custom Software Development</a></li>
 									<li><a href="software-integration.php">Software Integration</a></li>
 								</ul>
 							</div>  <!-- col-megamenu.// -->
-						</div><!-- end col-3 -->
-						<div class="col-lg-3 col-6">
-							<div class="col-megamenu">
-								<h6 class="title">Software Testing</h6>
+						<div class="col-lg-3 col-12 col-megamenu">
+							
+								<a href="softwaretesting.php" style="color:#011a42;font-size:14px;font-weight:bold;" class="title">Software Testing</a>
 								<ul class="list-unstyled">
 									<li><a href="manual-testing.php">Manual Testing</a></li>
 									<li><a href="automated-testing.php">Automated Testing</a></li>
@@ -152,10 +160,10 @@ function headerblock(){
 									<li><a href="accessibility-testing.php">Accessibility Testing</a></li>
 								</ul>
 							</div>  <!-- col-megamenu.// -->
-						</div>    
-						<div class="col-lg-3 col-6">
-							<div class="col-megamenu">
-								<h6 class="title">SEO</h6>
+						
+						<div class="col-lg-3 col-12 col-megamenu">
+						
+								<a href="seo.php" style="color:#011a42;font-size:14px;font-weight:bold;" class="title">SEO</a>
 								<ul class="list-unstyled">
 									<li><a href="keyword-research.php">Keyword Research</a></li>
 									<li><a href="on-page-optimization.php">On-page Optimization</a></li>
@@ -169,10 +177,8 @@ function headerblock(){
 									<li><a href="seo-strategy-and-consultation.php">SEO Strategy and Consultation</a></li>
 								</ul>
 							</div>  <!-- col-megamenu.// -->
-						</div>
-                        <div class="col-lg-3 col-6">
-							<div class="col-megamenu">
-								<h6 class="title">Digital Marketing</h6>
+                        <div class="col-lg-3 col-12 col-megamenu">
+								<a class="title" style="color:#011a42;font-size:14px;font-weight:bold;" href="digitalmarketing.php">Digital Marketing</a>
 								<ul class="list-unstyled">
 									<li><a href="seo.php">Search Engine Optimization</a></li>
 									<li><a href="sem.php">Search Engine Marketing</a></li>
@@ -187,10 +193,10 @@ function headerblock(){
 									<li><a href="marketing-automation.php">Marketing Automation</a></li>
                                 </ul>
 							</div>  <!-- col-megamenu.// -->
-						</div><!-- end col-3 -->
-						<div class="col-lg-3 col-6">
-							<div class="col-megamenu">
-								<h6 class="title">Mobile App Development</h6>
+						
+						<div class="col-lg-3 col-12 col-megamenu">
+						
+								<a class="title" style="color:#011a42;font-size:14px;font-weight:bold;" href="mobileappdevelopment.php">Mobile App Development</a>
 								<ul class="list-unstyled">
 									<li><a href="consultation-and-strategy.php">Consultation And Strategy</a></li>
 									<li><a href="ui-ux-design.php">UI/UX Design</a></li>
@@ -204,10 +210,10 @@ function headerblock(){
 									<li><a href="app-analytics-and-optimization.php">App Analytics and Optimization</a></li>
 								</ul>
 							</div>  <!-- col-megamenu.// -->
-						</div><!-- end col-3 -->
-						<div class="col-lg-3 col-6">
-							<div class="col-megamenu">
-								<h6 class="title">BPO</h6>
+						
+						<div class="col-lg-3 col-12 col-megamenu">
+							
+								<a style="color:#011a42;font-size:14px;font-weight:bold;" href="bpo.php" class="title">BPO</a>
 								<ul class="list-unstyled">
 									<li><a href="data-management-and-processing.php">Data Management and Processing</a></li>
 									<li><a href="technical-support-and-help-desk.php">Technical Support and Help Desk</a></li>
@@ -218,10 +224,10 @@ function headerblock(){
 									<li><a href="project-management-support.php">Project Management Support</a></li>
 								</ul>
 							</div>  <!-- col-megamenu.// -->
-						</div>    
-						<div class="col-lg-3 col-6">
-							<div class="col-megamenu">
-								<h6 class="title">Training</h6>
+						
+						<div class="col-lg-3 col-12 col-megamenu">
+							
+								<a style="color:#011a42;font-size:14px;font-weight:bold;" href="training.php" class="title">Training</a>
 								<ul class="list-unstyled">
 									<li><a href="programming-and-development-courses.php">Programming and Development Courses</a></li>
 									<li><a href="web-development-and-design-workshops.php">Web Development and Design Workshops</a></li>
@@ -229,7 +235,7 @@ function headerblock(){
 									<li><a href="data-science-and-analytics-bootcamps.php">Data Science and Analytics Bootcamps</a></li>
 									<li><a href="cybersecurity-training-programs.php">CyberSecurity Training Program</a></li>
 								</ul>
-							</div>  <!-- col-megamenu.// -->
+						
 						</div><!-- end col-3 --><!-- end col-3 -->
 					</div><!-- end row --> 
 				</div> <!-- dropdown-mega-menu.// -->
